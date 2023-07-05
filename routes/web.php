@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\eventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('page.login');
 });
+
+Route::get('/dasboard', function () {
+    return view('dasboard');
+})->name('home');
+
+Route::post('/login-auth', []);
+
+Route::get('/created event', function () {
+    return view('page.created_event');
+})->name('create');
