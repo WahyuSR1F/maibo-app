@@ -15,6 +15,15 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_organization')->references('id')->on('organizations');
+            $table->string('title');
+            $table->string('gambar_jpg');
+            $table->string('guest');
+            $table->string('description');
+            $table->string('link');
+            $table->dateTime('xpired');
+            $table->string('status');
+            $table->string('jenis');
             $table->timestamps();
         });
     }

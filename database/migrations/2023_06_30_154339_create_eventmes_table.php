@@ -14,8 +14,12 @@ class CreateEventmesTable extends Migration
     public function up()
     {
         Schema::create('eventmes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+           $table->id();
+           $table->foreignId('id_mahasiswa')->references('id')->on('mahasiswas');
+           $table->foreignId('id_organization')->references('id')->on('organizations');
+           $table->string('status_keanggotaan');
+           $table->string('status');
+           $table->timestamps();
         });
     }
 
