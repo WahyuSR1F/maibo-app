@@ -1,34 +1,36 @@
 
-<body>
+
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row shadow-lg">
+    <nav class="navbar bg-primary navbar-dark  p-0 fixed-top d-flex align-items-top flex-row shadow-lg">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <div class="me-3">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
         </div>
-        <div>
-          <a class="navbar-brand brand-logo img-fluid" href="index.html">
-            <img src="{{ asset('assets/images/maibo_logo.png') }}" alt="logo" />
-          </a>
-          <a class="navbar-brand brand-logo-mini img-fluid" href="index.html">
-            <img src="{{ asset('assets/images/maibo-mini-logo.png') }}" alt="logo" />
-          </a>
+        <div class="" width=50 height=100 >
+         <a class=" navbar-brand brand-logo img-fluid" href="{{ route('viewPage', ['page'=> 'dasboard']) }}">
+            <img width=50 height=100 src="{{ asset('assets/img/logomaibo.png') }}" alt="logo" />
+        </a>
+        <a class="navbar-brand brand-logo-mini img-fluid "  href="{{ route('viewPage', ['page'=> 'dasboard']) }}">
+          <img src="{{ asset('assets/img/logomaibo.png') }}" alt="logo" />
+        </a>
+        
         </div>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-top"> 
+        <P class=" navbar-brand brand-logo text-bold mt-2">MAIBO</P>
+      </div> 
+      
+      <div class="navbar-menu-wrapper d-flex align-items-top bg-primary justify-content-sm-start"> 
         <ul class="navbar-nav">
-          <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-            <h1 class="welcome-text">Good Morning Maiboes, <span class="text-black fw-bold">John Doe</span></h1>
-            <h3 class="welcome-sub-text">Kelola Event Organisasi Anda </h3>
+          <li class="nav-item font-weight-semibold d-none d-lg-block ms-0 ">
+            <h1 class="welcome-text text-white">Hello, <span class="text-white fw-bold">Robotika</span></h1>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <form class="search-form" action="#">
-              <i class="icon-search p-1"></i>
-              <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+            <form class="search-form text-white" action="#">
+              <i class="text-white"><ion-icon name="search-outline"></ion-icon></i>
+              <input type="search" class="form-control text-white" placeholder="Search Here" >
             </form>
           </li>
           <li class="nav-item dropdown">
@@ -109,8 +111,8 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-            <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item dropdown user-dropdown">
+            <a class="nav-link count-indicator" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
               <img class="img-xs rounded-circle" src="https://i.pinimg.com/originals/ef/81/1d/ef811de0cdb91c3e1fdbc6342859e609.jpg" alt="Profile image"> </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <div class="dropdown-header text-center">
@@ -118,11 +120,11 @@
                 <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
                 <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
               </div>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+              <a class="dropdown-item" href="{{ route('viewPage',['page'=>'page.profile']) }}"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+              <a class="dropdown-item" href="{{ route('logout') }}"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
             </div>
           </li>
         </ul>

@@ -10839,7 +10839,7 @@ textarea.form-control-sm {
 }
 
 textarea.form-control-lg {
-  min-height: 3.175rem;
+  min-height: 3rem;
 }
 
 .form-control-color {
@@ -27356,6 +27356,20 @@ body.avgrund-active {
   margin-right: 8px;
 }
 
+
+
+.next-hidden {
+  max-width: 100px; /* Lebar maksimum deskripsi yang ditampilkan */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.next-hidden::after {
+  content: "..."; /* Tanda elipsis yang ditambahkan di akhir teks */
+}
+
+
 .expandable-table tr td .expanded-table-normal-cell img {
   width: 34px;
   height: 34px;
@@ -29847,7 +29861,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar.navbar-primary .navbar-menu-wrapper {
-  background: #1F3BB3;
+  background: rgb(34, 97, 214);
 }
 
 .navbar.navbar-primary:not(.navbar-light) .navbar-menu-wrapper .navbar-toggler {

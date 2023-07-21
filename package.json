@@ -12,9 +12,13 @@
     "devDependencies": {
         "autoprefixer": "^10.4.14",
         "axios": "^0.21",
+        "jquery": "^3.6.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.4.24",
         "tailwindcss": "^3.3.2"
+    },
+    "dependencies": {
+        "sweetalert2": "^11.6.13"
     }
 }
