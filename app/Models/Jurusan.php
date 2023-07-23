@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Jurusan extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nama_jurusan', 'kampus_id'];
 }

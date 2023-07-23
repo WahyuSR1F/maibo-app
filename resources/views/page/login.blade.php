@@ -63,13 +63,17 @@
             </div>
           </div>
           <div class="col-lg-6 " data-aos="fade-left">
-            <div class=" text-center py-5 px-5 rounded  "  style="background-color: rgb(34, 97, 214)">
+            <div class="py-5 px-5 rounded  "  style="background-color: rgb(34, 97, 214)">
               <div class="m-lg-4 m-auto">
+              
+              <div class="text-center pb-2">
                 <div class="brand-logo w-300">
-                <img class="" src="{{ asset('assets/img/whitelogo.png')}}" alt="logo">
+                  <img class="" src="{{ asset('assets/img/whitelogo.png')}}" alt="logo">
+                </div>
+                 <h4 class="text-white blod"><span style="font-family:">MAIBO </span> Admin Center</h4>
+                 <h6 class="fw-light text-white">Sign in untuk Mengolah event dan Organisasi Anda</h6>
               </div>
-              <h4 class="text-white blod"><span style="font-family:">MAIBO </span> Admin Center</h4>
-              <h6 class="fw-light text-white">Sign in untuk Mengolah event dan Organisasi Anda</h6>
+             
               <form class="pt-3" action="{{ route('login') }}" method="POST">
                 @csrf
               @if (session('error'))
@@ -78,20 +82,18 @@
                   </div>
               @endif
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg rounded-pill" name="username" id="exampleInputEmail1" placeholder="Username" style="background-color: white" required>
+                  <label class="form-check-label text-white bold"  style="text-align: left;" >Email</label>
+                  <input type="email" class="form-control form-control-lg rounded-pill" name="username" id="exampleInputEmail1" placeholder="email" style="background-color: white" required>
                 </div>
                 <div class="form-group">
+                  <label class="form-check-label text-white bold"  style="text-align: left;" >Password</label>
                   <input type="password" class="form-control form-control-lg rounded-pill" name="password" id="exampleInputPassword1" placeholder="Password" style="background-color:white; #exampleInputPassword1::palceholder {color:white}" required>
                 </div>
                 <div class="mt-3 d-flex justify-content-center">
-                  <button class="btn btn-primary btn-md rounded-pill w-100" type="submit">Sign In</button>
+                  <button onclick="loading()" class="btn btn-primary btn-md rounded-pill w-100" type="submit">Sign In</button>
                 </div>
                 <div class="my-2">
                   <div class="form-check d-flex justify-content-between mt-3">
-                    <label class="form-check-label text-white ">
-                      <input type="checkbox" name='check'class="form-check-input">
-                      Keep me signed in
-                    </label>
                     <a href="#" class="auth-link text-white link-offset-2 link-underline link-underline-opacity-0">Forgot password?</a>
                   </div>
                   
@@ -139,7 +141,10 @@
  <script>
    AOS.init();
  </script>
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>

@@ -10,9 +10,10 @@
                         <div class="card text-center w-auto">
                             <div class="card-body">
                                 <div class="m-lg-2">
-                                    <img class="rounded-circle img-thumbnail" src="https://i.pinimg.com/originals/ef/81/1d/ef811de0cdb91c3e1fdbc6342859e609.jpg" class="card-img-top" alt="...">
+                                    <img class="rounded-circle img-thumbnail" src="{{ $session[0]->foto_profile }}" class="card-img-top" alt="..." style="width: 200px; height: 200px; background-image: url('{{ $session[0]->foto_profile }}'); background-size: cover;  background-position: center;  border-radius: 50%;">
                                 </div>
-                              <h5 class="card-title">@Robotika</h5>                             
+                              <h5 class="card-title">{{  $organisasi->nickname  }}</h5> 
+                              <p>{{ $session[0]->username }}</p>                            
                             </div>
                           </div> 
                     </div>
@@ -22,30 +23,11 @@
                             <div class="card">
                                 <div class="card-body">
                                   <div class="d-flex justify-content-between mb-3">
-                                    <h4 class="card-title title">UKM Robotika</h4>
+                                    <h4 class="card-title title">{{ $organisasi->nama }}</h4>
                                     <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Edit <span><ion-icon name="create-outline"></ion-icon></span></button>
                                   </div>
                                   <div class="form-floating">
-                                    <textarea class="bg-white border-0"  id="floatingTextarea" disabled style="width: 100%; height:700px">
-Deskripsi Profile Organisasi:
-Organisasi: UKM Robotika
-
-Deskripsi:
-UKM Robotika adalah wadah bagi mahasiswa yang berminat dan antusias dalam bidang robotika. Kami berkomitmen untuk mengembangkan pengetahuan, keterampilan, dan inovasi di dunia robotika guna menghadapi tantangan teknologi masa depan. Melalui kegiatan-kegiatan seperti pelatihan, proyek robotika, dan partisipasi dalam kompetisi, kami bertujuan untuk menciptakan lingkungan belajar yang inspiratif dan inovatif bagi seluruh anggota UKM Robotika.
-
-Visi kami adalah menjadi pemimpin di bidang pengembangan teknologi robotika di kalangan mahasiswa, sambil berkontribusi dalam upaya menciptakan solusi teknologi untuk kemajuan dan kesejahteraan masyarakat. UKM Robotika berkomitmen untuk terus berinovasi, berkolaborasi, dan berbagi pengetahuan dengan sesama anggota dan komunitas di luar UKM.
-
-Contact:
-
-Email: ukm.robotika@example.com
-Telepon: (021) 1234-5678
-Sosial Media:
-
-Facebook: facebook.com/ukmrobotika
-Instagram: instagram.com/ukm_robotika
-Twitter: twitter.com/ukm_robotika
-LinkedIn: linkedin.com/company/ukm-robotika
-                                    </textarea>
+                                    <textarea class="bg-white border-0"  id="floatingTextarea" disabled style="width: 100%; height:700px">{{ $organisasi->deskripsi }}</textarea>
                                   </div>
                                 </div>
                               </div>

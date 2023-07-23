@@ -1,3 +1,4 @@
+
 @extends('componen.main_admin')
 @section('content1')
 <section id="anggota">
@@ -7,6 +8,7 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Daftar Prodi</h4>
+                  <a href="{{ route('prodi_create_view') }}"><button type="button" class="btn btn-primary btn-sm">Tambah</button></a>
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead>
@@ -31,9 +33,8 @@
                           <td>{{ $item->nama_kampus }}</td>
                            <td>
                             <div class="d-flex m-1 justify-content-start">
-                                <a href=""><label class="badge badge-success m-1">view</label></a>
-                                <a href=""><label class="badge badge-warning m-1">Edit</label></a>
-                                <a href="" onclick="showAlert('apakah anda yakin menghapus data ini')"><label class="badge badge-danger m-1">Delete</label></a>
+                                <a href="{{ route('prodi_edit_view',['id' => $item->id]) }}"><button class="btn btn-warning btn-sm">Edit</button></a>
+                                <a href="" onclick="showAlertDelete({{ $item->id }})" style="margin-left: 10px"><button class="btn btn-danger btn-sm">Delete</button></a>
                             </div>
                             </td>
                         </tr>

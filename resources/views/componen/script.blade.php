@@ -41,7 +41,8 @@
  <script src="{{ asset('assets/js/script.js') }}"></script>
  <script src="{{ asset('assets/js/jquery.js') }}"></script>
  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
- <script src="{{ asset('path/to/sweetalert2.all.min.js') }}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+ <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>

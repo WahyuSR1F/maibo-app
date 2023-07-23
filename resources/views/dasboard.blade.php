@@ -1,3 +1,4 @@
+
 @extends('componen.main')
 
 <!-- content 1 -->
@@ -29,32 +30,32 @@
                   <div class="statistics-details d-flex align-items-center justify-content-between">
                     <div  data-aos="fade-down">
                       <p class="statistics-title">All Event</p>
-                      <h3 class="rate-percentage">20 <span class="mdi mdi-airballoon"></span></h3>
+                      <h3 class="rate-percentage">{{ $countEvent }} <span class="mdi mdi-airballoon"></span></h3>
                       <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>-0.5%</span></p>
                     </div>
                     <div  data-aos="fade-down">
                       <p class="statistics-title">All Post</p>
-                      <h3 class="rate-percentage">10 <span class="mdi mdi-animation"></span></h3>
+                      <h3 class="rate-percentage">{{  $countPost }} <span class="mdi mdi-animation"></span></h3>
                       <p class="text-success d-flex"><i class="mdi mdi-menu-up"></i><span>+0.1%</span></p>
                     </div>
                     <div  data-aos="fade-down">
                       <p class="statistics-title">All Rekrutment</p>
-                      <h3 class="rate-percentage">2 <span class="mdi mdi-apple-keyboard-shift"></span></h3>
+                      <h3 class="rate-percentage">{{ $countRekrutmen }} <span class="mdi mdi-apple-keyboard-shift"></span></h3>
                       <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
                     </div>
                     <div class="d-none d-md-block"  data-aos="fade-down">
                       <p class="statistics-title">Anggota</p>
-                      <h3 class="rate-percentage">4 Event</h3>
+                      <h3 class="rate-percentage">{{  $countAnggota }} Member</h3>
                       <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
                     </div>
                     <div class="d-none d-md-block"  data-aos="fade-down">
-                      <p class="statistics-title">All Participation</p>
-                      <h3 class="rate-percentage">127 <span class="mdi mdi-account-multiple-outline"></span></h3>
+                      <p class="statistics-title">Participation Event</p>
+                      <h3 class="rate-percentage">{{  $countParticipantEvent }} <span class="mdi mdi-account-multiple-outline"></span></h3>
                       <p class="text-danger d-flex"><i class="mdi mdi-menu-down"></i><span>68.8</span></p>
                     </div>
                     <div class="d-none d-md-block"  data-aos="fade-down">
-                      <p class="statistics-title">Candidated</p>
-                      <h3 class="rate-percentage">40 Persons</h3>
+                      <p class="statistics-title">Candidated Rekrutment</p>
+                      <h3 class="rate-percentage">{{  $countParticipantRekrutmen }} Persons</h3>
                       <p class="text-success d-flex"><i class="mdi mdi-menu-down"></i><span>+0.8%</span></p>
                     </div>
                   </div>

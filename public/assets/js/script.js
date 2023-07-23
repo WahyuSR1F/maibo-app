@@ -1,6 +1,94 @@
-function showAlert (pesan){
-    //menampilkan aletrt functional
-    alert(pesan);
+function showAlertDelete (id){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+    if (result.isConfirmed) {
+        // Jika pengguna mengklik "Yes, delete it!"
+        // Kirim permintaan GET ke server dengan parameter khusus untuk penghapusan data
+        window.location.href = `delete/${id}`;
+    }
+});
+}
+
+function showAlertCreate (){
+  Swal.fire({
+    title: 'Apa Kamu yakin?',
+    text: "Data Kampus baru akan segerah ditambahakan",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, Simpan'
+}).then((result) => {
+    if (result.isConfirmed) {
+        // Jika pengguna mengklik "Yes, delete it!"
+        // Kirim permintaan GET ke server dengan parameter khusus untuk penghapusan data
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Data mu akan ditambahkan',
+          showConfirmButton: false,
+          timer: 1500
+        })
+          document.getElementById('form-create').submit();
+    }
+});
+}
+
+function showAlertEdit (){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "Data kamu akan diedit",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Simpan Perubahan'
+}).then((result) => {
+    if (result.isConfirmed) {
+        // Jika pengguna mengklik "Yes
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Data mu akan ditambahkan',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        // Kirim permintaan GET ke server dengan parameter khusus untuk penghapusan data
+        document.getElementById('form-edit').submit();
+    }
+});
+}
+
+function loading (){
+  let timerInterval
+  Swal.fire({
+  title: 'Loading',
+  html: 'Take data<b></b> milliseconds.',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('Take data')
+  }
+})
 }
 
 

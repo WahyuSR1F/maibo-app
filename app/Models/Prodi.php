@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Prodi extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nama_prodi','jurusan_id','created_at', 'update_at'];
 }

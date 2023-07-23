@@ -8,55 +8,34 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Menambahkan Prodi</h4>
-                    <form class="forms-sample" action="" method="POST">
+                    <form id="form-create" class="forms-sample" action="{{ route('prodi_create_prosess') }}" method="POST">
                       @csrf
                       <div class="form-group ">
                         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Nama Prodi</label>
                           <div class="col-sm-9">
                             <div class="">
 
-                               <input class="form-control form-control-sm" type="text" required >
+                               <input class="form-control form-control-sm" type="text" required name="nama_prodi" >
                             </div>
                             
                           </div>
                       </div>
                       <div class="form-group ">
-                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Username</label>
-                          <div class="col-sm-9">
-                            <div class="">
-
-                               <input class="form-control form-control-sm" name="username" type="text" required >
-                            </div>
-                            
-                          </div>
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="jurusan_id">
+                          <option selected>Open this select menu</option>
+                          @foreach ($jurusan as $item)
+                               <option value="{{ $item->id }}">{{ $item->nama_jurusan }}</option>
+                          @endforeach
+                         
+                          
+                        </select>
                       </div>
 
-                      <div class="form-group ">
-                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">password</label>
-                          <div class="col-sm-9">
-                            <div class="">
-
-                               <input class="form-control form-control-sm" name="organisasi" type="password" required >
-                            </div>
-                            
-                          </div>
-                      </div>
-
-                      <div class="form-group ">
-                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Confirm password</label>
-                          <div class="col-sm-9">
-                            <div class="">
-
-                               <input class="form-control form-control-sm" name="organisasi" type="password" required >
-                            </div>
-                            
-                          </div>
-                      </div>
-
+                    
                       <div class="pt-lg-3 pt-3">
-                        <button type="submit" class="btn btn-primary btn-sm " onclick="showAlert('apakah ada yakin menambahkan data s ini')">Submit</button>
+                        <button type="button" class="btn btn-primary btn-sm " onclick="showAlertCreate()">Submit</button>
                        
-                        <a href="{{ route('viewPage',['page' => 'page.admin.dashboard']) }}">
+                        <a href="{{ route('prodi_view') }}">
                           <button type="button" class="btn btn-light btn-sm">Cancel</button>
                         </a>
                       </div>

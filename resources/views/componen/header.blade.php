@@ -1,3 +1,12 @@
+@php
+   $allData =  session()->get('organisasi'); 
+@endphp
+
+@foreach ($allData as $item)
+    
+@endforeach
+
+
 
 
     <!-- partial:partials/_navbar.html -->
@@ -9,10 +18,10 @@
           </button>
         </div>
         <div class="" width=50 height=100 >
-         <a class=" navbar-brand brand-logo img-fluid" href="{{ route('viewPage', ['page'=> 'dasboard']) }}">
+         <a class=" navbar-brand brand-logo img-fluid" onclick="loading()" href="{{ route('organisasi_dashboard') }}">
             <img width=50 height=100 src="{{ asset('assets/img/logomaibo.png') }}" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini img-fluid "  href="{{ route('viewPage', ['page'=> 'dasboard']) }}">
+        <a class="navbar-brand brand-logo-mini img-fluid "  href="">
           <img src="{{ asset('assets/img/logomaibo.png') }}" alt="logo" />
         </a>
         
@@ -23,7 +32,7 @@
       <div class="navbar-menu-wrapper d-flex align-items-top bg-primary justify-content-sm-start"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0 ">
-            <h1 class="welcome-text text-white">Hello, <span class="text-white fw-bold">Robotika</span></h1>
+            <h1 class="welcome-text text-white">Hello, <span class="text-white fw-bold">{{ $item->nama }}</span></h1>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -113,14 +122,14 @@
           </li>
           <li class="nav-item dropdown user-dropdown">
             <a class="nav-link count-indicator" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-              <img class="img-xs rounded-circle" src="https://i.pinimg.com/originals/ef/81/1d/ef811de0cdb91c3e1fdbc6342859e609.jpg" alt="Profile image"> </a>
+              <img class="img-xs rounded-circle" src="{{ $item->foto_profile }}" alt="Profile image"> </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <div class="dropdown-header text-center">
-                <img class="img-xs rounded-circle" src="https://i.pinimg.com/originals/ef/81/1d/ef811de0cdb91c3e1fdbc6342859e609.jpg" alt="Profile image">
-                <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                <img class="img-xs rounded-circle" src="{{ $item->foto_profile }}" alt="Profile image">
+                <p class="mb-1 mt-3 font-weight-semibold">{{ $item->nama }}</p>
+                <p class="fw-light text-muted mb-0">{{ $item->username }}</p>
               </div>
-              <a class="dropdown-item" href="{{ route('viewPage',['page'=>'page.profile']) }}"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+              <a class="dropdown-item" onclick="loading()" href="{{ route('organisasi_profile') }}"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>

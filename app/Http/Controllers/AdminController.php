@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+
 use App\Models\Jurusan;
 use App\Models\Kampus;
 use App\Models\Organisasi;
@@ -61,6 +62,15 @@ class AdminController extends Controller
         return view('page.admin.dashboard',['allData' => $allData]);
 
 
+    }
+
+    public function profile(){
+      $session = session()->get('admin');
+
+
+      $result = User::where('username', $session['email'])->select('username','foto_profile','created_at')->get();
+      
+      return view('page.admin.profile.profile',['profile' => $result]);
     }
 
     public function allOrganisasi(Request $request)
@@ -250,56 +260,175 @@ class AdminController extends Controller
       
     $check = $result->delete();
    } catch (\Throwable $th) {
-    session()->flash('danger', ' data gagal dihapus, terjadi kesalahan server');
-    return redirect()->route('kampus_view');
+    
+    return redirect()->route('kampus_view')->with('error'.'terjadi kesalahan server');
    }
     
 
       if(!$check){
-        session()->flash('danger', ' data gagal dihapus, terjadi kesalahan server');
-        return redirect()->route('kampus_view');
+        return redirect()->route('kampus_view')->with('error','terjadi kesalahan server');
       }
-      session()->flash('success', 'Data berhasil dihapus');
-      return redirect()->route('kampus_view');
+  
+      return redirect()->route('kampus_view')->with('success', 'data berhasil dihapus');
       
 
     }
 
 
 
-    public function createdJurusan (){
-      if (Auth::check()) {
+    public function createJurusanView(){
+    if (session('admin')) {
+
+        $result = Kampus::all();
         // Pengguna telah login, izinkan mereka melanjutkan
-        return view('page.admin.jurusan.create');
+        return view('page.admin.jurusan.create', ['kampus' => $result ]);
+    } else{
+      Auth::logout();
+      session()->flush();
+       return redirect()->route('login_view');
     }
-       return redirect()->route('login');
+      
     }
 
     public function createJurusan (Request $request) {
+     
       $validator =  $request->validate([
-        'name' => 'required',
+        'nama_jurusan' => 'required',
         'kampus_id' => 'required',
       ]);
 
       if(!$validator){
-        return redirect();
+        return redirect()->back();
       }
 
       $check =  Jurusan::create([
+         'kampus_id' => $request->kampus_id,
         'nama_jurusan' => $request->nama_jurusan
       ]);
 
       if(!$check){
-
+        return redirect()->back();
       }
-      return redirect()->route('kampus_view');
+      return redirect()->route('jurusan_view')->with('success','data jurusan berhasil ditambahkan');
       
     }
 
-    public function createProdi () {
+    public function EditJurusanView ($id){
+      if(!session('admin')){
+        Auth::logout();
+        session()->flush();
+        return redirect()->route('login_view');
+      }
+
+      $result = Jurusan::join('kampuses', 'jurusans.kampus_id','=', 'kampuses.id')->where('jurusans.id',$id)->get();
+      $kampus = Kampus::all();
+      return view('page.admin.jurusan.edit',['jurusan' => $result, 'kampus' => $kampus]);
+    }
+
+    public function EditJurusanProsess (Request $request){
+      
+      if(!session('admin')){
+        Auth::logout();
+        session()->flush();
+        return redirect()->route('login_view');
+      }
+      
+      $request->validate([
+        'kampus_id' => 'required',
+        'nama_jurusan' => 'required',
+      ]);
+   
+      $result = Jurusan::find($request->id);
+      
+      $check = $result->update([
+        'kampus_id' => $request->kampus_id,
+        'nama_jurusan' => $request->nama_jurusan,
+      ]);
+
+      if(!$check){
+        return redirect()->route('jurusan_edit')->with('error', 'maaf terjadi kesalahan database tolong masukan sekali lagi');
+      }
+      return redirect()->route('jurusan_view')->with('success', 'data berhasil diperbarui');
+
+      
+    }
+
+    public function deleteJurusan ($id){
+      if(!session('admin')){
+        return redirect()->route('login_view');
+      }
+
+      $result = Jurusan::find($id);
+      $check = $result->delete();
+
+      if(!$check){
+        return redirect()->route('jurusan_view')->with('error', 'maaf terjadi kesalahan database');
+      }
+      return redirect()->route('jurusan_view')->with('success', 'data berhasil diperbarui');
+
+    }
+
+    public function createProdiView () {
+      if(!session('admin')){
+        return redirect()->route('login_view');
+
+      }
+
+      $result = Jurusan::all();
+
+      
+      return view('page.admin.prodi.create',['jurusan' => $result]);
     
-    
-    
+    }
+
+    public function createProdiProsess(Request $request){
+       $request->validate([
+          'nama_prodi' => 'required',
+          'jurusan_id' => 'required'
+       ]);
+
+       $result = Prodi::create([
+         'nama_prodi' => $request->nama_prodi,
+         'jurusan_id' => $request->jurusan_id
+       ]);
+
+       if(!$result){
+        return redirect()->route('prodi_create_view')->with('error','terjadi kesalahan server');
+       }
+       return redirect()->route('prodi_view')->with('success'.'data berhasil ditambahakan');
+    }
+
+    public function editProdiView ($id){
+      if(!session('admin')){
+        return redirect()->route('login_view');
+      }
+       $result =  Prodi::find($id)->get();
+       $jurusan = Jurusan::all();
+
+       return view('page.admin.prodi.edit',['prodi' => $result, 'jurusan' => $jurusan]);
+    }
+
+    public function editProdiProsess (Request $request){
+          $request->validate([
+             'nama_prodi' => 'required',
+             'jurusan_id' => 'required'
+          ]);
+
+          $result = Prodi::find($request->id);
+          $check = $result->update([
+            'nama_prodi' => $request->nama_prodi,
+            'jurusan_id' => $request->jurusan_id
+          ]);
+
+          if(!$check){
+
+            return redirect()->route('prodi_edit_view')->with('error','terjadi kesalahan server data gagal diubah');
+
+          }
+
+          return redirect()->route('prodi_view')->with('success', 'data berhasil di ubah');
+
+          
     }
 
        

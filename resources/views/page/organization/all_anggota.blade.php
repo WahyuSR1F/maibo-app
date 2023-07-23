@@ -1,6 +1,27 @@
+
+
 @extends('componen.main')
 
 @section('content1')
+
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses!',
+            text: '{{ session('success') }}'
+        });
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'gagal',
+            text: '{{ session('success') }}'
+        });
+    </script>
+@endif
 <section id="anggota">
     <div class="m-lg-3 m-1">
         <div class="row">
@@ -15,32 +36,37 @@
                           <th>No</th>
                           <th>NIM</th>
                           <th>Nama</th>
-                          <th>Prodi</th>
-                          <th>Jurusan</th>
-                          <th>Kampus</th>
-                          <th>jabatan</th>
-                          <th>status</th>
+                          <th>Status Pangkat</th>
+                          <th>Devisi</th>
+                          <th>Bergabung</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
+                        @php
+                            $i=1;
+                        @endphp
+                        @foreach ($anggota as $item)
+                            
+                     
                         <tr>
-                          <td>1</td>
-                          <td>3621512842</td>
-                          <td>Wahyu Sahri Rhamadhan</td>
-                          <td>D-4 Teknologi Rekayasa Perangkat Lunak</td>
-                          <td>Bisnis dan Infromatika</td>
-                          <td>Politeknik Negeri Banyuwangi</td>
-                          <td><label for="" class="badge badge-warning">Anggota</label></td>
-                          <td><label for="" class="badge badge-success">active</label></td>
+                          <td>{{ $i }}</td>
+                          <td>{{ $item->nim }}</td>
+                          <td>{{ $item->nama_mahasiswa }}</td>
+                          <td><label for="" class="badge badge-warning">{{ $item->status_pangkat }}</label></td>
+                          <td>{{ $item->nama_devisi }}</td>
+                          <td>{{ $item->created_at }}</td>
                           <td>
                             <div class="d-flex m-1 justify-content-between">
-                                <a href="{{ route('viewPage',['page' => 'page.user.profile_user']) }}"><label class="badge badge-success m-1">view</label></a>
-                                <a href="{{ route('viewPage',['page' => 'page.organization.edit_page']) }}"><label class="badge badge-warning m-1">Edit</label></a>
-                                <a href=""><label onclick="showAlert('apakah anda yakin menghapus data ini')" class="badge badge-danger m-1">Delete</label></a>
+                                <a href=""><label class="badge badge-success m-1">view</label></a>
+                                <a href=""><label class="badge badge-warning m-1">Edit</label></a>
                             </div>
                           </td>
-                        </tr>
+                        </tr>   
+                          @php
+                              $i++
+                          @endphp
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

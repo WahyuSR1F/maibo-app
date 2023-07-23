@@ -10,11 +10,11 @@
         });
     </script>
 @endif
-@if (session('danger'))
+@if (session('error'))
     <script>
         Swal.fire({
-            icon: 'dangger',
-            title: 'Fail',
+            icon: 'error',
+            title: 'maaf kesalahan server, mohon diulang kembali',
             text: '{{ session('success') }}'
         });
     </script>
@@ -55,12 +55,12 @@
                               <td>{{ $item->nama_kampus }}</td>
                               <td>
                                 <div class="d-flex m-1 justify-content-start">
-                                  <a href="{{ route('kampus_edit',['id' => $item->id]) }}" onclick="showAlert('apakah anda yakin edit data ini')">
+                                  <a href="{{ route('kampus_edit',['id' => $item->id]) }}" onclick="showAlertEdit({{ $item->id }})">
                                     <button class="btn btn-warning btn-sm " style="margin-left: 5px">
                                       Edit
                                     </button>
                                   </a>
-                                    <a href="{{ Route('kampus_delete',['id' => $item->id]) }}" onclick="showAlert('apakah anda yakin menghapus data ini')">
+                                    <a onclick="showAlertDelete({{ $item->id }})" >
                                       <button class="btn btn-danger btn-sm " style="margin-left: 5px">
                                         
                                          Delete
@@ -94,7 +94,7 @@
       </div>
       <div class="modal-body">
         <p class="text-danger">*Perhatikan dalam pengisian nama kampus</p>
-        <form action="{{ route('kampus_create') }}" method="POST">
+        <form id="form-create" action="{{ route('kampus_create') }}" method="POST">
           @csrf
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Nama Kampus</label>
@@ -102,7 +102,7 @@
           </div>
           <div class="modal-footer ">
             <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-            <a href="" onclick="showAlert('apakah anda yakin menambahkan data kampus')" ><button type="submit"   class="btn btn-primary btn-sm">Simpan</button></a>
+            <button type="button"  onclick="showAlertCreate()"   class="btn btn-primary btn-sm">Simpan</button>
           </div>
 
         </form>

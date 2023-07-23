@@ -1,3 +1,7 @@
+
+@foreach ($profile as $item)
+    
+@endforeach
 @include('componen.head')
 @include('componen.header_admin')
 
@@ -9,11 +13,10 @@
                     <div class="col-lg-3 m-lg-2">
                         <div class="card text-center w-auto">
                             <div class="card-body">
-                                <div class="m-lg-2">
-                                    <img class="rounded-circle img-thumbnail" src="https://i.pinimg.com/originals/ef/81/1d/ef811de0cdb91c3e1fdbc6342859e609.jpg" class="card-img-top" alt="...">
+                                <div class="m-lg-2" style="width: 200px; height: 200px; background-image: url('{{ $item->foto_profile }}'); background-size: cover;  background-position: center;  border-radius: 50%;">
                                 </div>
                               <h5 class="card-title">Admin</h5>
-                              <p class="card-text">Badan kelolah pengguna Aplikasi</p>                          
+                              <p class="card-text">{{ $item->username }}</p>                          
                             </div>
                           </div>
                     </div>
@@ -24,12 +27,19 @@
                                 <div class="card-body">
                                     <table>
                                         <tr>
-                                            <td>Nama :</td>
-                                            <td>Wahyu Sahri Rhamadhan</td>
+                                            <td>Status</td>
+                                            <td>:</td>
+                                            <td>Admin</td>
                                         </tr>
                                         <tr>
-                                            <td>Account :</td>
-                                            <td>wahyu@gmail.com</td>
+                                            <td>Account </td>
+                                            <td>:</td>
+                                            <td>{{ $item->username }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bergabung pada </td>
+                                            <td>:</td>
+                                            <td>{{ $item->created_at }}</td>
                                         </tr>
                                     </table>
                                 </div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Support\Facades\Route;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
@@ -14,9 +15,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
-            return redirect('/')->header('Content-Type','page.login');
-        }
+        return route('login_view');
     }
 
     

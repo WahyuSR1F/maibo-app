@@ -1,3 +1,4 @@
+
 @extends('componen.main_admin')
 @section('content2')
 <section id="anggota">
@@ -16,8 +17,8 @@
                           <th>Nickname</th>
                           <th>Deskripsi</th>
                           <th>Nama Kampus</th>
-                          <th>Dibuat</th>
-                          <th>Action</th>
+                          <th>Bergabung</th>
+                          
                         </tr>
                       </thead>
                       <tbody>
@@ -31,12 +32,7 @@
                           <td>{{ $item->nickname }}</td>
                           <td class="next-hidden">{{ $item->deskripsi }}</td>
                           <td>{{ $item->nama_kampus }}</td>
-                          <td><label for="" class="badge badge-dark">{{ $item->created_at }}</label></td>
-                           <td>
-                            <div class="d-flex m-1 justify-content-start">
-                                <a href="" onclick="showAlert('apakah anda yakin menghapus data ini')"><label class="badge badge-danger m-1">Delete</label></a>
-                            </div>
-                            </td>
+                          <td>{{ $item->updated_at }}</td>
                         </tr>
                         @php
                             $i++;
