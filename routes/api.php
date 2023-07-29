@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\MobileController;
 use App\Http\Controllers\MaiboAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::apiResource('maiboApp', MaiboAPI::class);
+Route::post('/maibo/login',[MobileController::class,'loginApi']);

@@ -28,8 +28,8 @@
       </a>
       <div class="collapse" id="auth1">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href=""> All Post </a></li>
-          <li class="nav-item"> <a class="nav-link" href=""> Create Post </a></li>
+          <li class="nav-item"> <a class="nav-link"  onclick="loading()" href="{{ route('organisasi_post_view') }}"> All Post </a></li>
+          <li class="nav-item"> <a class="nav-link"  onclick="loading()"  href="{{ route('organisasi_post_create') }}"> Create Post </a></li>
         </ul>
       </div>
     </li>
@@ -43,8 +43,8 @@
       </a>
       <div class="collapse" id="auth">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href=""> All Event </a></li>
-          <li class="nav-item"> <a class="nav-link" href=""> Create Event </a></li>
+          <li class="nav-item"> <a class="nav-link"  onclick="loading()" href="{{ route('organisasi_event_view') }}"> All Event </a></li>
+          <li class="nav-item"> <a class="nav-link"  onclick="loading()" href="{{ route('create_event_view') }}"> Create Event </a></li>
         </ul>
       </div>
     </li>
@@ -57,11 +57,11 @@
       </a>
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="">All Rekrutment</a></li>
+          <li class="nav-item"><a class="nav-link"  onclick="loading()" href="{{ route('organisasi_rekrutmen_view') }}">All Rekrutment</a></li>
         </ul> <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="">Create Rekrutment</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="loading()" href="{{ route('organisasi_rekrutmen_create') }}">Create Rekrutment</a></li>
         </ul> <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Participasi</a></li>
+          <li class="nav-item"><a class="nav-link" onclick="loading()" href="{{ route('organisasi_rekrutmen_add_view') }}">Participasi</a></li>
         </ul>
       </div>
     </li>

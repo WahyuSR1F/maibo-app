@@ -1,6 +1,9 @@
+
 @extends('componen.main')
 
 @section('content1')
+
+
     
 <section id="detail">
     <div class="m-lg-2 mt-lg-0 mt-3">
@@ -13,28 +16,37 @@
                             <div class="col-lg-4 mt-lg-3">
                                 
                                 <div class="card rounded-9">
-                                    <img class="img-thumbnail rounded" src="{{ asset('assets/img/PNG/12.png') }}" alt="">
+                                  @if($gambar->foto)
+                                 @php
+                                    
+                                 @endphp
+                                  <img class="img-thumbnail rounded" src="{{ asset('storage/dataAPP/event/img/'.$gambar->foto)  }}" alt="">
+                                  @else
+                                  <p class="p-3">tidak gambar yang tersedia</p> 
+                                  @endif
+                                    
                                 </div>
 
                                 <div class="mt-4 d-flex justify-content-start">
-                                    <a href=""> <button class="btn btn-primary btn-sm m-1">Edit <span><ion-icon name="pencil-outline"></ion-icon></span></button></a>
-                                    <a href="{{ route('viewPage', ['page' => 'page.event.allview_page']) }}"> <button class=" m-1 btn btn-warning btn-sm ">Cancel <ion-icon name="ban-outline"></ion-icon></button></a>
+                                    <a href="{{ route('edit_event_view',['id' => $item->id]) }}"> <button class="btn btn-primary btn-sm m-1">Edit <span><ion-icon name="pencil-outline"></ion-icon></span></button></a>
+                                    <a href="{{ route('organisasi_event_view')}}"> <button class=" m-1 btn btn-warning btn-sm ">Cancel <ion-icon name="ban-outline"></ion-icon></button></a>
                                 </div>
                             </div>
                             <div class="col-lg-8 mt-lg-3 mt-3">
                                 <div class="row">
                                     <div class="card">
-                             
                                         <div class="card-body">
                                           <h3 class="card-title title">Judul Event :</h3>
-                                          <h4 class="card-title title">BaktiSosial serta Kantong Mahasiswa Poliwangi (Baksosmangmas)*</h4>
-                                          <p> <label class="badge badge-info" for="">Webinar</label><label class=" badge badge-success m-1" for="">public</label></p>
-                                          <h6> <label class="badge badge-success mt-1">Opening On 12/7/2022  20:23:12 PM</label></h6>
-                                          <h6> <label class="badge badge-danger mt-1">Close On 13/7/2022  20:23:12 PM</label></h6>
+                                          <h4 class="card-title title">{{ $item->title }}</h4>
+                                          <h6> Jenis :<label class="badge badge-info" for=""> {{ $jenis_event->nama }}</label></h6>
+                                          <h6> Start Registration : <label class="badge badge-success mt-1"> {{ $item->registration_start  }}</label></h6>
+                                          <h6> Close Registration : <label class="badge badge-danger mt-1">{{ $item->registration_close  }}</label></h6>
+                                          <h6> Event Start :<label class="badge badge-success mt-1">{{ $item->event_start  }}</label></h6>
+                                          <h6> Event Close :<label class="badge badge-danger mt-1">{{ $item->event_close }}</label></h6>
                                           <div id="participasi-record" class="mt-4">
                                            <h6 class="m-1">Participation Event</h6>
                                           <div class="d-flex justify-content-start">
-                                            <h6 class="m-1">80</h6>
+                                            <h6 class="m-1">{{ $count }}</h6>
                                             <a  href=""><label class=" mdi mdi-account-multiple"></label></a>
                                             <h6 class="m-1">Participasi</h6>
                                           </div> 
@@ -46,39 +58,8 @@
                                         <div class="card-body">
                                              <h3 class="card-title title">Deskripsi</h3>
 
-                                             <textarea id="myTextarea" oninput="adjustTextareaSize(this)" class=" border-0 bg-white" rows="50" cols="50" disabled >
-Assalamualaikum Wr. Wb. Salam sejahtera untuk kita semua. Om swastiastu, Shaloom, Nammo, Budhaya. 
-
-Diberitahukan kepada seluruh *  Ketua himpunan atau perwakilan himpunan bahwasanya akan diadakan Rapat terkait BaktiSosial serta Kantong Mahasiswa Poliwangi (Baksosmangmas)* pada :
-
-📅 : Jumat, 14 Juli 2023
-⏰ : 13.00 WIB - Selesai
-📍 : Sekretariat BEM 
-👔 : Bebas, Sopan, Rapi
-
-NB: 
-- WAJIB
-- DIUSAHAKAN DATANG 15 MENIT SEBELUM ACARA DIMULAI 
-
-
-Sekian Terima kasih
-Wassalamualaikum Wr. Wb.
-
-Ikuti dan dapatkan informasi lengkap tentang kami!!
-Instagram : @bempoliwangi
-Youtube : BemPoliwangi
-Email : bem@poliwangi.ac.id
-====================
-Badan Eksekutif Mahasiswa
-Kabinet Bana Adhibrata
-Politeknik Negeri Banyuwangi
-2023
-•
-
-Hidup Mahasiswa 
-Hidup Politeknik 
-Hidup Rakyat Indonesia
-                                             </textarea>
+                                             <textarea id="myTextarea" oninput="autoResize(this)" class=" border-0 bg-white" disabled rows="40" style="resize: none; overflow-y:hidden; width:100%; min-height:50px">{{ $item->deskripsi }}</textarea>
+                                            
                                         </div>
                                     </div>
                               </div> 
@@ -104,15 +85,26 @@ Hidup Rakyat Indonesia
                                               </tr>
                                             </thead>
                                             <tbody>
+                                              @php
+                                                  $i =1;
+                                              @endphp
+                                              @foreach ($participant as $value)
+                                                  
                                               <tr>
-                                                <td>1</td>
-                                                <td>Wahyu Sahri Rhamadhan</td>
+                                                <td>{{ $i }}</td>
+                                                <td>{{ $value->nama }}</td>
                                                 <td><label for="" class="badge badge-success">Robotika</label></td>
                                                 <td>Teknologi Rekayasa Perangkat Lunak</td>
                                                 <td>Informasi dan Bisnis</td>
                                                 <td>Politeknik Negeri Banyuwangi</td>
-                                                <td><a href="{{ route('viewPage',['page'=>'page.user.profile_user']) }}"><label for=""class="badge badge-info">view</label></a></td>
+                                                <td><a href="{{ route('praticipasi_detail_event',['id' => $value->id]) }}"><label for=""class="badge badge-info p-4">view</label></a></td>
                                               </tr>
+
+                                              @php
+                                                  $i++
+                                              @endphp
+                                              @endforeach
+
                                             </tbody>
                                           </table>
                                         </div>

@@ -1,9 +1,6 @@
 
-            <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-      
         
-          <footer class="footer float-left">
+          <footer class="footer  relative" style="bottom: 0;">
             <div class="container-fluid">
              <div class="text-center d-lg-flex d-md-flex justify-content-lg-between justify-content-md-between">
               

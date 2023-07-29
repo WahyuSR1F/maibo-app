@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->dateTime('event_close');
             $table->enum('status', ['ongoing', 'open', 'close', 'end']);
             $table->enum('status_view',['private','public']);
+
         });
     }
 

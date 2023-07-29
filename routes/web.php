@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrganisasiController;
+use App\Models\Organisasi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,14 +67,42 @@ Route::middleware('auth')->group(function () {
   Route::get('dashboard',[OrganisasiController::class,'dashboardOrganisasi'])->name('organisasi_dashboard');
   Route::get('profile',[OrganisasiController::class,'profile'])->name('organisasi_profile');
   Route::get('Anggota',[OrganisasiController::class,'organisasiAnggotaView'])->name('organisasi_anggota_view');
+  Route::get('Anggota/edit/view/{id}',[OrganisasiController::class, 'AnggotaEditView'])->name('organisasi_anggota_edit_view');
+  Route::post('Anggota/edit/prosess',[OrganisasiController::class,'AnggotaEditProsess'])->name('organisasi_anggota_edit_prosess');
+  Route::get('Anggota/delete/{id}',[OrganisasiController::class,'AnggotaDelete'])->name('organisasi_anggota_delete');
+
+  //Route Event
   Route::get('event',[OrganisasiController::class,'eventView'])->name('organisasi_event_view');
   Route::get('event/detail/{id}',[OrganisasiController::class,'detailEvent'])->name('organisasi_event_detail');
+  Route::get('event/create',[OrganisasiController::class,'createEventView'])->name('create_event_view');
+  Route::post('event/create/prosess',[OrganisasiController::class,'createEventProsess'])->name('create_event_prosess');
+  Route::get('event/edit/view/{id}',[OrganisasiController::class,'editEventView'])->name('edit_event_view');
+  Route::post('event/edit/prosses',[OrganisasiController::class,'editEventProsess'])->name('edit_event_prosess');
+  Route::get('event/delete/{id}',[OrganisasiController::class,'deleteEvent'])->name('delete_event_prosess');
   Route::get('partisipasi/event/detail/{id}',[OrganisasiController::class,'partisipasiEventDetail'])->name('praticipasi_detail_event');
+
+
+  //Route Post
   Route::get('praticipasi/rekrutmen/detail/{id}',[OrganisasiController::class,'pertisipasiRekrutmenDetail'])->name('participant_rekrutmen_detail');
   Route::get('post',[OrganisasiController::class,'postView'])->name('organisasi_post_view');
   Route::get('post/detail/{id}',[OrganisasiController::class,'detailOrganisasiPost'])->name('organisasi_post_detail');
+  Route::get('post/create',[OrganisasiController::class,'CreatePostView'])->name('organisasi_post_create');
+  Route::post('post/create/prosess',[OrganisasiController::class,'createPostProsess'])->name('organisasi_post_create_prosess');
+  Route::get('post/edit/view/{id}',[OrganisasiController::class,'editPostView'])->name('organisasi_post_edit_view');
+  Route::post('post/edit/prosess',[OrganisasiController::class,'editPostProsess'])->name('organisasi_post_prosses');
+  Route::get('post/delete/{id}',[OrganisasiController::class,'deletePost'])->name('organisasi_post_delete');
+
+  //Route Rekrutmen
+
   Route::get('rekrutmen',[OrganisasiController::class,'rekrutmenView'])->name('organisasi_rekrutmen_view');
-  Route::get('rekrutmen/detail/{id}',[OrganisasiController::class,'rekrutmenDetail'])->name('organisasi_view_detail');
+  Route::get('rekrutmen/detail/{id}',[OrganisasiController::class,'rekrutmenDetail'])->name('organisasi_rekrutmen_view_detail');
+  Route::get('rekrutmen/create/view',[OrganisasiController::class,'rekrutmenCreateView'])->name('organisasi_rekrutmen_create');
+  Route::post('rekrutmen/create/prosess',[OrganisasiController::class,'rekrutmenCreateProsess'])->name('organisasi_rekrutmen_create_prosess');
+  Route::get('rekrutmen/edit/view/{id}',[OrganisasiController::class, 'rekrutmenEditView'])->name('organisasi_rekrutmen_edit_view');
+  Route::post('rekrutmen/edit/prosess',[OrganisasiController::class,'rekrutmenEditProsess'])->name('organisasi_rekrutmen_edit_prosess');
+  Route::get('rekrutmen/delete/{id}',[OrganisasiController::class,'rekrutmenDelete'])->name('organisasi_rekrutmen_delete');
+  Route::get('rekrutmen/Add/Anggota/view',[OrganisasiController::class,'rekrutmenAddAnggotaView'])->name('organisasi_rekrutmen_add_view');
+  Route::get('rekrutmen/Add/Anggota/delete/{id}',[OrganisasiController::class,'rekrutmenAddAnggotaProsess'])->name('organisasi_rekrutmen_add_anggota');
   
 
   });

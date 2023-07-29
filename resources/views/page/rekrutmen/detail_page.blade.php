@@ -12,13 +12,20 @@
                         <div class="row">
                             <div class="col-lg-4 mt-lg-3">
                                 
+                                @if ($gambar->foto)
                                 <div class="card rounded-9">
-                                    <img class="img-thumbnail rounded" src="{{ asset('assets/img/PNG/12.png') }}" alt="">
+                                    <img class="img-thumbnail rounded" src="{{ asset('storage/dataApp/rekrutmen/img/'.$gambar->foto) }}" alt="">
                                 </div>
+                                @else
+                                <div class="card rounded-9">
+                                  gambar tidak ada
+                               </div>  
+                                @endif
+                               
 
                                 <div class="mt-4 d-flex justify-content-start">
                                     <a href=""> <button class="btn btn-primary btn-sm m-1">Edit <span><ion-icon name="pencil-outline"></ion-icon></span></button></a>
-                                    <a href="{{ route('viewPage', ['page' => 'page.event.allview_page']) }}"> <button class=" m-1 btn btn-warning btn-sm ">Cancel <ion-icon name="ban-outline"></ion-icon></button></a>
+                                    <a href=""> <button class=" m-1 btn btn-warning btn-sm ">Cancel <ion-icon name="ban-outline"></ion-icon></button></a>
                                 </div>
                             </div>
                             <div class="col-lg-8 mt-lg-3 mt-3">
@@ -27,14 +34,14 @@
                              
                                         <div class="card-body">
                                           <h3 class="card-title title">Judul Rekrutment :</h3>
-                                          <h4 class="card-title title">Commodo Lorem sint adipisicing velit.</h4>
-                                          <p> <label class="badge badge-info" for="">Rekrutment</label><label class=" badge badge-success m-1" for="">public</label></p>
-                                          <h6> <label class="badge badge-success mt-1">Opening On 12/7/2022  20:23:12 PM</label></h6>
-                                          <h6> <label class="badge badge-danger mt-1">Close On 13/7/2022  20:23:12 PM</label></h6>
+                                          <h4 class="card-title title">{{ $rekrutmen->title }}</h4>
+                                          <h6> Registrasi Awal Open : <label class="badge badge-success mt-1">{{ $rekrutmen->registration_start }}</label></h6>
+                                          <h6> Registrasi Ditutup :<label class="badge badge-danger mt-1">{{ $rekrutmen->registration_close }}</label></h6>
+                                          <h6> Event Dimulai : {{ $rekrutmen->event_start }}</h6>
                                           <div id="participasi-record" class="mt-4">
                                            <h6 class="m-1">Rekrutment Perserta</h6>
                                           <div class="d-flex justify-content-start">
-                                            <h6 class="m-1">80</h6>
+                                            <h6 class="m-1">{{ $count }}</h6>
                                             <a  href=""><label class=" mdi mdi-account-multiple"></label></a>
                                             <h6 class="m-1">Perserta</h6>
                                           </div> 
@@ -46,39 +53,7 @@
                                         <div class="card-body">
                                              <h3 class="card-title title">Deskripsi</h3>
 
-                                             <textarea id="myTextarea" oninput="adjustTextareaSize(this)" class=" border-0 bg-white" rows="50" cols="50" disabled >
-Assalamualaikum Wr. Wb. Salam sejahtera untuk kita semua. Om swastiastu, Shaloom, Nammo, Budhaya. 
-
-Diberitahukan kepada seluruh *  Ketua himpunan atau perwakilan himpunan bahwasanya akan diadakan Rapat terkait BaktiSosial serta Kantong Mahasiswa Poliwangi (Baksosmangmas)* pada :
-
-📅 : Jumat, 14 Juli 2023
-⏰ : 13.00 WIB - Selesai
-📍 : Sekretariat BEM 
-👔 : Bebas, Sopan, Rapi
-
-NB: 
-- WAJIB
-- DIUSAHAKAN DATANG 15 MENIT SEBELUM ACARA DIMULAI 
-
-
-Sekian Terima kasih
-Wassalamualaikum Wr. Wb.
-
-Ikuti dan dapatkan informasi lengkap tentang kami!!
-Instagram : @bempoliwangi
-Youtube : BemPoliwangi
-Email : bem@poliwangi.ac.id
-====================
-Badan Eksekutif Mahasiswa
-Kabinet Bana Adhibrata
-Politeknik Negeri Banyuwangi
-2023
-•
-
-Hidup Mahasiswa 
-Hidup Politeknik 
-Hidup Rakyat Indonesia
-                                             </textarea>
+                                             <textarea id="myTextarea" oninput="adjustTextareaSize(this)" class=" border-0 bg-white" rows="20" cols="50" disabled >{{ $rekrutmen->deskripsi }}</textarea>
                                         </div>
                                     </div>
                               </div> 
@@ -96,23 +71,36 @@ Hidup Rakyat Indonesia
                                             <thead>
                                               <tr>
                                                 <th>No</th>
+                                                <th>NIM</th>
                                                 <th>Nama</th>
-                                                <th>Organisasi</th>
+                                                <th>Devisi</th>
+                                                <th>Contact</th>
                                                 <th>Prodi</th>
                                                 <th>jurusan</th>
                                                 <th>Kampus</th>
+                                                <th>Action</th>
                                               </tr>
                                             </thead>
                                             <tbody>
+                                              @php
+                                              $i = 1;
+                                              @endphp
+                                              @foreach ( $participasi as $item)
                                               <tr>
-                                                <td>1</td>
-                                                <td>Wahyu Sahri Rhamadhan</td>
-                                                <td><label for="" class="badge badge-success">Robotika</label></td>
-                                                <td>Teknologi Rekayasa Perangkat Lunak</td>
-                                                <td>Informasi dan Bisnis</td>
-                                                <td>Politeknik Negeri Banyuwangi</td>
-                                                <td><a href="{{ route('viewPage',['page'=>'page.user.profile_user']) }}"><label for=""class="badge badge-info">view</label></a></td>
+                                                <td>{{  $i }}</td>
+                                                <td>{{ $item->nim }}</td>
+                                                <td>{{ $item->nama}}</td>
+                                                <td>{{ $item->nama_devisi }}</td>
+                                                <td>{{ $item->contact }}</td>
+                                                <td>{{ $item->nama_prodi }}</td>
+                                                <td>{{  $item->nama_jurusan }}</td>
+                                                <td>{{ $item->nama_kampus }}</td>
+                                                <td>
+                                                  <button class="btn btn-primary btn-sm">Add Anggota +</button>
+                                                </td>
                                               </tr>
+
+                                              @endforeach
                                             </tbody>
                                           </table>
                                         </div>

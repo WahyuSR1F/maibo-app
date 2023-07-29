@@ -2,7 +2,9 @@
 
 @extends('componen.main')
 
+
 @section('content1')
+
 
 @if (session('success'))
     <script>
@@ -53,13 +55,13 @@
                           <td>{{ $i }}</td>
                           <td>{{ $item->nim }}</td>
                           <td>{{ $item->nama_mahasiswa }}</td>
-                          <td><label for="" class="badge badge-warning">{{ $item->status_pangkat }}</label></td>
+                          <td><label for="" class="badge badge-warning p-2">{{ $item->status_pangkat }}</label></td>
                           <td>{{ $item->nama_devisi }}</td>
                           <td>{{ $item->created_at }}</td>
                           <td>
                             <div class="d-flex m-1 justify-content-between">
-                                <a href=""><label class="badge badge-success m-1">view</label></a>
-                                <a href=""><label class="badge badge-warning m-1">Edit</label></a>
+                                <a href="{{ route('organisasi_anggota_edit_view',['id' => $item->id]) }}"><button class="btn btn-warning btn-sm m-1">Edit</button></a>
+                                <button type="button" onclick="showAlertDelete('Anggota/delete',{{$item->id}})" class="btn btn-danger btn-sm m-1">Delete</button>
                             </div>
                           </td>
                         </tr>   

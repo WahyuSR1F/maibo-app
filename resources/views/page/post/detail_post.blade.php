@@ -1,6 +1,4 @@
 @extends('componen.main')
-
-
 @section('content1')
     
 <section id="detail">
@@ -14,12 +12,12 @@
                             <div class="col-lg-4 mt-lg-3">
                                 
                                 <div class="card rounded-9">
-                                    <img class="img-thumbnail rounded" src="{{ asset('assets/img/PNG/12.png') }}" alt="">
+                                    <img class="img-thumbnail rounded" src="{{ asset('storage/dataApp/post/img/'.$gambar->foto) }}" alt="">
                                 </div>
 
                                 <div class="mt-4 d-flex justify-content-start">
                                     <a href=""> <button class="btn btn-primary btn-sm m-1">Edit <span><ion-icon name="pencil-outline"></ion-icon></span></button></a>
-                                    <a href="{{ route('viewPage', ['page' => 'page.event.allview_page']) }}"> <button class=" m-1 btn btn-warning btn-sm ">Cancel <ion-icon name="ban-outline"></ion-icon></button></a>
+                                    <a href=""> <button class=" m-1 btn btn-warning btn-sm ">Cancel <ion-icon name="ban-outline"></ion-icon></button></a>
                                 </div>
                             </div>
                             <div class="col-lg-8 mt-lg-3 mt-3">
@@ -27,9 +25,10 @@
                                     <div class="card">
                              
                                         <div class="card-body">
-                                          <h3 class="card-title title">Judul Postt :</h3>
-                                          <h4 class="card-title title">BaktiSosial serta Kantong Mahasiswa Poliwangi (Baksosmangmas)*</h4>
-                                          <h6> <label class="badge badge-success mt-1">Created at 12/7/2022  20:23:12 PM</label></h6>
+                                          <h3 class="card-title title">Detail Postt :</h3>
+                       
+                                          <h6> <label class="badge badge-success mt-1">{{ $post->created_at }}</label></h6>
+                                          <h6> <label class="badge badge-success mt-1">{{ $post->updated_at }}</label></h6>
                                         </div>  
                                     </div>
 
@@ -37,39 +36,7 @@
                                         <div class="card-body">
                                              <h3 class="card-title title">Deskripsi</h3>
 
-                                             <textarea id="myTextarea" oninput="adjustTextareaSize(this)" class=" border-0 bg-white" rows="50" cols="50" disabled >
-Assalamualaikum Wr. Wb. Salam sejahtera untuk kita semua. Om swastiastu, Shaloom, Nammo, Budhaya. 
-
-Diberitahukan kepada seluruh *  Ketua himpunan atau perwakilan himpunan bahwasanya akan diadakan Rapat terkait BaktiSosial serta Kantong Mahasiswa Poliwangi (Baksosmangmas)* pada :
-
-📅 : Jumat, 14 Juli 2023
-⏰ : 13.00 WIB - Selesai
-📍 : Sekretariat BEM 
-👔 : Bebas, Sopan, Rapi
-
-NB: 
-- WAJIB
-- DIUSAHAKAN DATANG 15 MENIT SEBELUM ACARA DIMULAI 
-
-
-Sekian Terima kasih
-Wassalamualaikum Wr. Wb.
-
-Ikuti dan dapatkan informasi lengkap tentang kami!!
-Instagram : @bempoliwangi
-Youtube : BemPoliwangi
-Email : bem@poliwangi.ac.id
-====================
-Badan Eksekutif Mahasiswa
-Kabinet Bana Adhibrata
-Politeknik Negeri Banyuwangi
-2023
-•
-
-Hidup Mahasiswa 
-Hidup Politeknik 
-Hidup Rakyat Indonesia
-                                             </textarea>
+                                             <textarea id="myTextarea" oninput="adjustTextareaSize(this)" class=" border-0 bg-white" rows="50" cols="50" disabled >{{ $post->deskripsi }}</textarea>
                                         </div>
                                     </div>
                               </div> 

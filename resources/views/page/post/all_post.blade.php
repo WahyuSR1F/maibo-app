@@ -1,4 +1,6 @@
+
 @extends('componen.main')
+
 
 @section('content1')
 <section id="anggota">
@@ -13,28 +15,35 @@
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Picture</th>
                           <th>Deskripsi</th>
-                          <th>Create at</th>
-                          <th>Update at</th>
+                          <th>Status</th>
+                          <th>Created</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
+                          @foreach ($post as $item)
                         <tr>
                           <td>1</td>
-                          <td><img class="img-xls rounded" src="asset('assets/img/PNG/1.png')" alt=""></td>
-                          <td class="next-hidden">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, doloremque illo ab necessitatibus quam cupiditate unde quis earum expedita quae neque ipsum eveniet consequatur in corrupti optio molestias tenetur? Veritatis.</td>
-                          <td><label for="" class="badge badge-dark">12/01/2023</label></td>
-                          <td><label for="" class="badge badge-dark">12/02/2023</label></td>
+                          <td class="next-hidden">{{ $item->deskripsi }}</td>
+                          @if ($item->status =='public')
+                          <td><label class="badge badge-success p-2">{{ $item->status }}</label></td>
+                          @elseif ($item->status == 'privat')
+                          <td><label class="badge badge-warning p-2">{{ $item->status }}</label></td>
+                          @endif
+
+                          <td><label for="" class="badge badge-dark p-2">{{ $item->updated_at }}</label></td>
                            <td>
                             <div class="d-flex m-1 justify-content-start">
-                                <a href="{{ route('viewPage',['page' => 'page.post.detail_post']) }}"><label class="badge badge-success m-1">view</label></a>
-                                <a href="{{ route('viewPage',['page' => 'page.post.edit_page']) }}"><label class="badge badge-warning m-1">Edit</label></a>
-                                <a href="" onclick="showAlert('apakah anda yakin menghapus data ini')"><label class="badge badge-danger m-1">Delete</label></a>
+                                <a href="{{ route('organisasi_post_detail',['id' => $item->id]) }}"><button class="btn btn-success btn-sm m-1">View</button></a>
+                                <a href="{{ route('organisasi_post_edit_view',['id' => $item->id]) }}"><button class="btn btn-warning btn-sm m-1">Edit</button></a>
+
+                                
+                                <button type="button" onclick="showAlertDelete('post/delete',{{ $item->id }})" class="btn btn-danger btn-sm m-1">Delete</button>
                             </div>
                             </td>
                         </tr>
+                        @endforeach
                        
                       </tbody>
                     </table>

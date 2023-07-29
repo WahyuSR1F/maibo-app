@@ -1,7 +1,7 @@
-function showAlertDelete (id){
+function showAlertDelete (url,id){
   Swal.fire({
     title: 'Are you sure?',
-    text: "You won't be able to revert this!",
+    text: "semua data yang berhubungan dengan data ini akan otomatis terhapus !",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
@@ -11,7 +11,7 @@ function showAlertDelete (id){
     if (result.isConfirmed) {
         // Jika pengguna mengklik "Yes, delete it!"
         // Kirim permintaan GET ke server dengan parameter khusus untuk penghapusan data
-        window.location.href = `delete/${id}`;
+        window.location.href = url+`/${id}`;
     }
 });
 }
@@ -114,4 +114,23 @@ function gantiKonten (){
   $.get("{{ url('page.ajax_containt}}", {}, function(data, status){
     $("#konten").html(data);
   })
+}
+
+
+function showAlertAddAnggota (url,id){
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "anggota baru akan ditambahkan!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+    if (result.isConfirmed) {
+        // Jika pengguna mengklik "Yes, delete it!"
+        // Kirim permintaan GET ke server dengan parameter khusus untuk penghapusan data
+        window.location.href = url+`/${id}`;
+    }
+});
 }

@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Gambar extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['foto','event_id','post_id','rekrutmen_id'];
 }

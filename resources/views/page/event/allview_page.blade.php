@@ -1,3 +1,4 @@
+
 @extends('componen.main')
 
 @section('content1')
@@ -16,7 +17,6 @@
                       <th>jenis</th>
                       <th>private</th>
                       <th>status</th>
-                      <th>Partisipasi</th>
                       <th>Registration Start</th>
                       <th>Registration Close</th>
                       <th>Event Start</th>
@@ -25,25 +25,48 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @php
+                        $i=1;
+                    @endphp
+                    @foreach ($event as $item)
+                        
+                   
                     <tr>
-                      <td>1</td>
-                      <td class="next-hidden">GRAND OPENING AI'TERAS CAFE</td>
-                      <td>Expo</td>
-                      <td><label class="badge badge-success">public</label></td>
-                      <td><label for="" class="badge badge-success">Opened</label></td>
-                      <td>120</td>
-                      <td><label for="" class="badge badge-dark">12-07-2023</label></td>
-                      <td><label for="" class="badge badge-danger">20-07-2023</label></td>
-                      <td><label for="" class="badge badge-dark">12-07-2023</label></td>
-                      <td><label for="" class="badge badge-danger">20-07-2023</label></td>
+                      <td>{{ $i }}</td>
+                      <td class="next-hidden">{{ $item->title }}</td>
+                      <td>{{ $item->nama }}</td>
+                      @if ($item->status_view =='public')
+                      <td><label class="badge badge-success   p-2">{{ $item->status_view }}</label></td>
+                      @elseif ($item->status_view == 'private')
+                      <td><label class="badge badge-warning   p-2">{{ $item->status_view }}</label></td>
+                      @endif
+
+                      @if ($item->status == 'open')
+                      <td><label for="" class="badge badge-success  p-2">Opened</label></td>  
+                      @elseif($item->status == 'ongoing')
+                      <td><label for="" class="badge badge-primary  p-2">ongoing</label></td>   
+                      @elseif($item->status == 'close')
+                      <td><label for="" class="badge badge-danger  p-2">Close</label></td>   
+                      @else
+                      <td><label for="" class="badge badge-dark  p-2">End</label></td>   
+                      @endif
+                      <td>{{ $item->registration_start }}</td>
+                      <td>{{ $item->registration_close }}</td>
+                      <td>{{ $item->event_start }}</td>
+                      <td>{{ $item->event_close }}</td>
                       <td>
                         <div class="d-flex m-1 justify-content-between">
-                            <a href="{{ route('viewPage',['page' => 'page.event.detail_page']) }}"><label class="badge badge-success m-1">view</label></a>
-                            <a href="{{ route('viewPage',['page' => 'page.event.edit_page']) }}"><label class="badge badge-warning m-1">Edit</label></a>
-                            <a href="" onclick="showAlert('apakah anda yakin menghapus data ini')"><label class="badge badge-danger m-1">Delete</label></a>
+                            <a href="{{ route('organisasi_event_detail',['id' => $item->id]) }}"><button class="btn btn-success btn-sm m-1">View</button></a>
+                            <a href="{{ route('edit_event_view',['id' => $item->id]) }}"><button class="btn btn-warning btn-sm m-1">Edit</button></a>
+                            
+                            <button class="btn btn-danger btn-sm m-1" type="button"  onclick="showAlertDelete('event/delete',{{ $item->id }})">Delete</button>
                         </div>
                       </td>
                     </tr>
+                    @php
+                        $i++;
+                    @endphp
+                    @endforeach
                   </tbody>
                 </table>
               </div>

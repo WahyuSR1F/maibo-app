@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Expr\Cast\Unset_;
 
 class HelperSetUpData extends Controller
@@ -67,6 +68,39 @@ class HelperSetUpData extends Controller
         
         return $result;
     }
+
+    //save image khusu untuk file image crop
+    public function saveImg ($location, $gambar, $nama_oraganisasi){
+        //regenreate nama gambar 
+        $nama_gambar = time().'_'.$nama_oraganisasi.'_'. uniqid().'.png';
+        Storage::disk('public')->put($location . $nama_gambar, $gambar);
+
+        $path = $nama_gambar;
+        return $path;
+    }
+    
+//save image khusus file img asli
+    public function saveImgFile ($location, $gambar, $judulEvent){
+
+        $namaGambar = time() . '_' . uniqid() . '.'.$judulEvent.'.' . $gambar->getClientOriginalExtension();
+
+            // Simpan gambar ke folder "public/images"
+            $gambar->storeAs('public/'.$location, $namaGambar);
+
+            // Mendapatkan path lengkap file yang disimpan
+            $pathGambar = $namaGambar;
+
+            return $pathGambar;
+    }
+
+    public function deleteImg ($location, $namaGambar){
+        //regenreate nama gambar 
+        
+        $check = Storage::delete($location.$namaGambar);
+
+        return $check;
+    }
+
 
     
     

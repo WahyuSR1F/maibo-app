@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Rekrutmen extends Model
 {
     use HasFactory;
+
+    protected $fillable =['organisasi_id','title','deskripsi','registrasion_start','registrasion_close','event_start','event_close','status','status_view'];
 }
