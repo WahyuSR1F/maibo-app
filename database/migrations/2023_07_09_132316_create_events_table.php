@@ -19,12 +19,13 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('jenis_event_id');
             $table->string('title');
             $table->text('deskripsi');
-            $table->dateTime('registration_start');
-            $table->dateTime('registration_close');
-            $table->dateTime('event_start');
-            $table->dateTime('event_close');
+            $table->date('registration_start')->default(now()); // Ubah '2023-01-01' sesuai nilai default yang Anda inginkan
+            $table->date('registration_close')->default(now());
+            $table->date('event_start')->default(now());
+            $table->date('event_close')->default(now());
             $table->enum('status', ['ongoing', 'open', 'close', 'end']);
             $table->enum('status_view',['private','public']);
+            $table->timestamps();
 
         });
     }

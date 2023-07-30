@@ -268,7 +268,7 @@ class OrganisasiController extends Controller
             
         ]);
 
-        dd($request->file('foto'));
+        
         if(!$check){
             return redirect()->route('create_event_view')->with('error','terjadi kesalahan data');
         }
@@ -736,7 +736,7 @@ class OrganisasiController extends Controller
 
             $check_gambar =  Gambar::create([
                 'foto' => $path,
-                'event_id' => $check->id
+                'rekrutmen_id' => $check->id
             ]);
             //sudah masuk atau ada masalah
             if(!$check_gambar){

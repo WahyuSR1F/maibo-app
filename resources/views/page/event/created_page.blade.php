@@ -22,7 +22,7 @@
                         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Deskripsi Kegiatan</label>
                           <div class="col-sm-9">
                             <div class="">
-                              <textarea class="border-wheat"  id="exampleFormControlTextarea3" name="deskripsi" cols="60" rows="9" placeholder="deskripsi kegiatan" required></textarea>
+                              <textarea class="border-wheat"  id="exampleFormControlTextarea3" name="deskripsi" cols="40" rows="9" placeholder="deskripsi kegiatan" required></textarea>
                               @error('deskripsi')
                               <div class="alert alert-danger mt-1">{{ $message }}</div>
                               @enderror

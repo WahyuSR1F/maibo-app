@@ -162,7 +162,7 @@ class AdminController extends Controller
       $modal =  new Kampus();
       $kampus =  $tools->getAll($modal);
 
-      $result = Jurusan::join('kampuses', 'jurusans.kampus_id','=','kampuses.id')->get();
+      $result = Jurusan::join('kampuses', 'jurusans.kampus_id','=','kampuses.id')->select('kampuses.*','kampuses.id as id_kampus',"jurusans.*")->get();
     
       return view('page.admin.jurusan.jurusan',["jurusan" => $result, "kampus" => $kampus]);
 
@@ -320,12 +320,13 @@ class AdminController extends Controller
         return redirect()->route('login_view');
       }
 
-      $result = Jurusan::join('kampuses', 'jurusans.kampus_id','=', 'kampuses.id')->where('jurusans.id',$id)->get();
+      $result = Jurusan::where('jurusans.id',$id)->get();
       $kampus = Kampus::all();
       return view('page.admin.jurusan.edit',['jurusan' => $result, 'kampus' => $kampus]);
     }
 
     public function EditJurusanProsess (Request $request){
+    
       
       if(!session('admin')){
         Auth::logout();
@@ -339,6 +340,8 @@ class AdminController extends Controller
       ]);
    
       $result = Jurusan::find($request->id);
+
+    
       
       $check = $result->update([
         'kampus_id' => $request->kampus_id,

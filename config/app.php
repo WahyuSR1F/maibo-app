@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,6 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Illuminate\Html\FormFacade::class,
         'Toastr' => Yoeunes\Toastr\Facades\Toastr::class,
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
 
     ],
 

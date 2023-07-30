@@ -17,11 +17,11 @@ class CreateRekrutmensTable extends Migration
             $table->id('id');
             $table->unsignedBigInteger('organisasi_id');
             $table->string('title');
-            $table->string('deskripsi');
-            $table->dateTime('registration_start');
-            $table->dateTime('registration_close');
-            $table->dateTime('event_start');
-            $table->dateTime('event_close');
+            $table->text('deskripsi');
+            $table->date('registration_start')->default(now()); // Ubah '2023-01-01' sesuai nilai default yang Anda inginkan
+            $table->date('registration_close')->default(now());
+            $table->date('event_start')->default(now());
+            $table->date('event_close')->default(now());
             $table->enum('status',['ongoin','open', 'close','end']);
             
             $table->timestamps();
